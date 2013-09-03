@@ -184,7 +184,7 @@ angular.module('ActiveRecord', ['ng']).provider('ActiveRecord', function() {
 				if (urlRoot === null) {
 					throw 'Implement this.$url() or specify this.$urlRoot';
 				}
-				return baseUrl + urlRoot + (urlRoot.charAt(urlRoot.length - 1) === '/' ? '' : '/') + encodeURIComponent(this[this.$idAttribute]);
+				return urlRoot + (urlRoot.charAt(urlRoot.length - 1) === '/' ? '' : '/') + encodeURIComponent(this[this.$idAttribute]);
 			},
 
 			/**
@@ -256,7 +256,7 @@ angular.module('ActiveRecord', ['ng']).provider('ActiveRecord', function() {
 				options.method = crudMapping[operation];
 			}
 			if (!options.url) {
-				options.url = _result(model, '$url');
+				options.url = baseUrl + _result(model, '$url');
 			}
 
 			if (requestInterceptor) {
